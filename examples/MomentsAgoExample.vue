@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import MomentsAgo from '@/Components/MomentsAgo/MomentsAgo.vue'
+import MomentsAgo from '../MomentsAgo.vue'
 
 export default {
     components: { MomentsAgo, },
