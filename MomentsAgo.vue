@@ -9,8 +9,8 @@ export default{
     data(){
         return {
             step: null,
-            intervalId: null,
             timeValue: null,
+            valueIntervalId: null,
 
             range: [
                 {
@@ -63,10 +63,11 @@ export default{
          * If 'date' prop never changes, this watcher can be removed.
          */
         date(){
-            clearInterval(this.intervalId)
+            clearInterval(this.valueIntervalId)
+
             this.step = null
-            this.intervalId = null
             this.timeValue = null
+            this.valueIntervalId = null
 
             this.make()
         }
@@ -78,8 +79,8 @@ export default{
 
     computed: {
         displayTime(){
-            clearInterval(this.intervalId)
-            
+            clearInterval(this.valueIntervalId)
+
             switch(this.range[this.step].in){
                 case 'moments':
                     return `${this.range[this.step].date} ${this.range[this.step].sufix}`
@@ -152,7 +153,7 @@ export default{
         activateTimeout(interval){
             this.timeValue = this.getValueFromMS(interval)
 
-            this.intervalId = setTimeout(() => {
+            this.valueIntervalId = setTimeout(() => {
                 this.timeValue = this.getValueFromMS(interval)
             }, this.getRemainingMStoNextValue(interval))
 
